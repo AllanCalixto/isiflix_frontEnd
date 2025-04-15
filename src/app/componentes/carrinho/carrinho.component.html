@@ -1,0 +1,55 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h3>Seu carrinho</h3>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="vazio == true">
+        <div class="col-12">
+            <h3>Seu carrinho está vazio</h3>
+        </div>
+    </div>
+
+    <div id="itens" *ngIf="vazio == false">
+        <div class="row">
+            <div class="col-12">
+                <h3>Valor Total {{pedido.valorTotal | currency:'BRL'}}</h3>
+            </div>
+
+        </div>
+        <div class="row itemPedido" *ngFor="let ITEM of pedido.itensPedido">
+            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-2 col-xl-2">
+                <img src="{{ ITEM.produto.linkFoto }}" width="80%">
+            </div>
+
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-5 col-xl-5 text-center">
+                <label for="nome">Produto</label>
+                <h4 id="nome">{{ ITEM.produto.nome }}
+                   <i (click)="removerItem(ITEM.produto.id)" class="far fa-trash-alt"></i>
+                </h4>
+            </div>
+
+            <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 col-xl-2 text-center">
+                <label for="prUni">Preço Unitário</label>
+                <h5 id="prUni">{{ ITEM.precoUnitario | currency:'BRL' }}</h5>
+            </div>
+
+            <div class="col-xs-6 col-sm-4 col-md-1 col-lg-1 col-xl-1 text-center">
+                <label for="qtd">Quantidade</label>
+                <h5 id="qtd">{{ ITEM.qtdeItem }}</h5>
+            </div>
+
+            <div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 col-xl-2 text-center">
+                <label for="prTotal">Preço Total</label>
+                <h5 id="prTotal">{{ ITEM.precoTotal | currency:'BRL' }}</h5>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <button class="btn btn-primary">Finalizar Compra</button>
+        </div>
+
+    </div>
+</div>
