@@ -28,13 +28,15 @@ export class CarrinhoComponent implements OnInit {
 
   public removerItem(idProduto: number) {
     let i: number;
-    for(i=0; i< this.pedido.itensPedido.length; i++){
-      if(this.pedido.itensPedido[i].produto.id == idProduto) {
-        alert("Removendo produto: "+this.pedido.itensPedido[i].produto.nome);
-        this.pedido.valorTotal -= this.pedido.itensPedido[i].precoTotal;
-        this.pedido.itensPedido.splice(i,1);
-      }
+    for (i = 0; i < this.pedido.itensPedido.length; i++) {
+        if (this.pedido.itensPedido[i].produto.id == idProduto) {
+            alert("Removendo produto: " + this.pedido.itensPedido[i].produto.nome);
+            this.pedido.valorTotal -= this.pedido.itensPedido[i].precoTotal;
+            this.pedido.itensPedido.splice(i, 1);
+            break;
+        }
     }
+    this.pedido.valorTotal = this.pedido.itensPedido.reduce((acc, item) => acc + item.precoTotal, 0);
     localStorage.setItem("LeetirCarrinho", JSON.stringify(this.pedido));
-  }
+}
 }
