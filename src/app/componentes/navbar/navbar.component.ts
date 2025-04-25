@@ -20,9 +20,11 @@ export class NavbarComponent implements OnInit {
 
     const carrinhoString = localStorage.getItem("LeetirCarrinho")
     this.pedido = carrinhoString ? JSON.parse(carrinhoString) : {};
-    if(this.pedido){
+    if (this.pedido && Array.isArray(this.pedido.itensPedido)) {
       this.numItens = this.pedido.itensPedido.length;
-    }
+  } else {
+      this.numItens = 0; // Define como 0 se itensPedido não existir
+  }
 
 
     this.service.getAllCategorias()

@@ -12,6 +12,8 @@ import { DestaquesComponent } from './componentes/destaques/destaques.component'
 import { CarrosselComponent } from './componentes/carrossel/carrossel.component';
 import { DetalhesComponent } from './componentes/detalhes/detalhes.component';
 import { CarrinhoComponent } from './componentes/carrinho/carrinho.component';
+import { EfetivarpedidoComponent } from './componentes/efetivarpedido/efetivarpedido.component';
+import { ReciboComponent } from './componentes/recibo/recibo.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { CarrinhoComponent } from './componentes/carrinho/carrinho.component';
     DestaquesComponent,
     CarrosselComponent,
     DetalhesComponent,
-    CarrinhoComponent
+    CarrinhoComponent,
+    EfetivarpedidoComponent,
+    ReciboComponent
   ],
   imports: [
     BrowserModule,
