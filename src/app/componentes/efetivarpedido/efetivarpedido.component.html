@@ -28,9 +28,16 @@
             <label for="txtEmail" class="form-label">Seu email</label>
             <input type="text" class="form-control" id="txtEmail" [(ngModel)]="cliente.email">
         </div>
-        <div class="mb-3">
-            <label for="txtCep" class="form-label">Cep da sua residência</label>
-            <input type="text" class="form-control" id="txtCep" [(ngModel)]="cliente.cep">
+        <div class="row">
+            <div class="col-xs-8 col-sm-8 col-md-9 col-lg-10 col-xl-10">
+                <div class="mb-3">
+                    <label for="txtCep" class="form-label">Cep da sua residência</label>
+                    <input type="text" class="form-control" id="txtCep" [(ngModel)]="cliente.cep">
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-3 col-lg-2 col-xl-2">
+                <button type="button" class="btn btn-primary" (click)="buscarTelefone()" id="btnCep">Buscar CEP</button>
+            </div>
         </div>
         <div class="mb-3">
             <label for="txtLogradouro" class="form-label">Logradouro</label>
@@ -71,15 +78,16 @@
             </div>
             <div class="mb-3">
                 <label for="txtObservacao" class="form-label">Observações do seu Pedido</label>
-                <input type="text" class="form-control" [(ngModel)]="pedido.observacoes" id="txtObservacao" placeholder="Informe se você tem preferência de horário ou alguma outra restrição na entrega">
+                <input type="text" class="form-control" [(ngModel)]="pedido.observacoes" id="txtObservacao"
+                    placeholder="Informe se você tem preferência de horário ou alguma outra restrição na entrega">
             </div>
-             <div class="row">
+            <div class="row">
                 <div class="col-12 text-center">
                     <button type="button" class="btn btn-primary" (click)="finalizarPedido()">Finalizar Pedido</button>
 
                 </div>
 
-             </div>
+            </div>
         </div>
     </div>
 </div>
