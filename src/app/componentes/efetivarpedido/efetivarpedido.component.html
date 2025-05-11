@@ -1,9 +1,13 @@
+
 <div class="container">
+    <button id="btnModal" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalErroCPF">
+
+    </button>
     <div id="divBusca" class="row">
         <div class="col-xs-8 col-sm-8 col-md-9 col-lg-10 col-xl-10">
             <div class="mb-3">
-                <label for="txtTelefone" class="form-label">Seu Whatsapp</label>
-                <input type="text" class="form-control" id="txtTelefone" [(ngModel)]="cliente.telefone">
+                <label for="txtTelefone" class="form-label">Seu CPF</label>
+                <input type="text" class="form-control" id="txtCpf" [(ngModel)]="cliente.cpf">
             </div>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-3 col-lg-2 col-xl-2">
@@ -90,4 +94,22 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- Modal quando cpf for invalido -->
+<div class="modal fade " tabindex="-1" id="modalErroCPF">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Erro no CPF</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>CPF inválido!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
 </div>

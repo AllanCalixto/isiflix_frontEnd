@@ -26,8 +26,69 @@ export class EfetivarpedidoComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  public isCPFValid(): boolean {
+    if (!this.cliente.cpf || this.cliente.cpf.length == 0) {
+      return false;
+    }
+
+    let cpf = this.cliente.cpf.replace(/\D/g, ''); // Remove caracteres não numéricos
+    console.log(`CPF formatado: ${cpf}`);
+
+    if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) {
+      console.log("CPF inválido: sequência repetida ou número incorreto de dígitos.");
+      return false;
+    }
+
+    // atribuir o cpf desformatado para o cpf do cliente
+    this.cliente.cpf = cpf;
+
+    let digitos: number[] = cpf.split("").map(i => +i);
+    console.log(`Dígitos extraídos: ${digitos}`);
+
+    // Cálculo do primeiro dígito verificador
+    let soma1 = 0;
+    for (let i = 0; i < 9; i++) {
+      soma1 += digitos[i] * (10 - i);
+    }
+    let resto1 = soma1 % 11;
+    let primeiroDigito = resto1 < 2 ? 0 : 11 - resto1;
+
+    console.log(`Soma1: ${soma1}, Resto1: ${resto1}, Primeiro Dígito Calculado: ${primeiroDigito}`);
+
+    if (digitos[9] !== primeiroDigito) {
+      console.log("Primeiro dígito verificador inválido.");
+      return false;
+    }
+
+    // Cálculo do segundo dígito verificador
+    let soma2 = 0;
+    for (let i = 0; i < 10; i++) {
+      soma2 += digitos[i] * (11 - i);
+    }
+    let resto2 = soma2 % 11;
+    let segundoDigito = resto2 < 2 ? 0 : 11 - resto2;
+
+    console.log(`Soma2: ${soma2}, Resto2: ${resto2}, Segundo Dígito Calculado: ${segundoDigito}`);
+
+    if (digitos[10] !== segundoDigito) {
+      console.log("Segundo dígito verificador inválido.");
+      return false;
+    }
+
+    console.log("CPF válido!");
+    return true;
+  }
+
+  // renomear para buscarCPF()
   public buscarTelefone() {
-    this.cliService.buscarClientePeloTelefone(this.cliente.telefone)
+    if (!this.isCPFValid()) {
+      let btnModal = document.getElementById("btnModal");
+      if (btnModal) {
+        btnModal.click();
+      }
+      return;
+    }
+    this.cliService.buscarClientePeloCPF(this.cliente.cpf)
       .subscribe((cli: Cliente) => {
         this.cliente = cli;
         this.achou = true;
