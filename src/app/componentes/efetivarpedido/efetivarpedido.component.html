@@ -1,4 +1,3 @@
-
 <div class="container">
     <button id="btnModal" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalErroCPF">
 
@@ -6,12 +5,12 @@
     <div id="divBusca" class="row">
         <div class="col-xs-8 col-sm-8 col-md-9 col-lg-10 col-xl-10">
             <div class="mb-3">
-                <label for="txtTelefone" class="form-label">Seu CPF</label>
+                <label for="txtCpf" class="form-label">Seu CPF</label>
                 <input type="text" class="form-control" id="txtCpf" [(ngModel)]="cliente.cpf">
             </div>
         </div>
         <div class="col-xs-4 col-sm-4 col-md-3 col-lg-2 col-xl-2">
-            <button type="button" class="btn btn-primary" (click)="buscarTelefone()" id="btnBuscar">Buscar</button>
+            <button type="button" class="btn btn-primary" (click)="buscarCPF()" id="btnBuscar">Buscar</button>
         </div>
     </div>
     <div id="divDetalhes" *ngIf="visivel">
@@ -32,6 +31,10 @@
             <label for="txtEmail" class="form-label">Seu email</label>
             <input type="text" class="form-control" id="txtEmail" [(ngModel)]="cliente.email">
         </div>
+        <div class="mb-3">
+            <label for="txtTelefone" class="form-label">Seu Whatsapp</label>
+            <input type="text" class="form-control" id="txtTelefone" [(ngModel)]="cliente.telefone">
+        </div>
         <div class="row">
             <div class="col-xs-8 col-sm-8 col-md-9 col-lg-10 col-xl-10">
                 <div class="mb-3">
@@ -40,7 +43,7 @@
                 </div>
             </div>
             <div class="col-xs-4 col-sm-4 col-md-3 col-lg-2 col-xl-2">
-                <button type="button" class="btn btn-primary" (click)="buscarTelefone()" id="btnCep">Buscar CEP</button>
+                <button type="button" class="btn btn-primary" (click)="buscarCEP()" id="btnCep">Buscar CEP</button>
             </div>
         </div>
         <div class="mb-3">
@@ -88,7 +91,6 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <button type="button" class="btn btn-primary" (click)="finalizarPedido()">Finalizar Pedido</button>
-
                 </div>
 
             </div>
@@ -98,18 +100,18 @@
 
 <!-- Modal quando cpf for invalido -->
 <div class="modal fade " tabindex="-1" id="modalErroCPF">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Erro no CPF</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>CPF inválido!</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-      </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Erro no Formulário</h5>
+                <button type="button" class="btn-close" (click)="ocultaAlert()"></button>
+            </div>
+            <div class="modal-body">
+                <p>{{ mensagemErro  }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>

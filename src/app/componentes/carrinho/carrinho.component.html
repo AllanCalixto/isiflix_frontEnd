@@ -46,9 +46,12 @@
             </div>
         </div>
     </div>
-    <div class="row" *ngIf="pedido.itensPedido.length > 0">
-        <div class="col-12 text-center">
-            <button class="btn btn-primary" (click)="efetivar()">Finalizar Compra</button>
+    <div class="row" *ngIf="pedido.itensPedido != null && pedido.itensPedido.length > 0">
+        <div class="col-6 text-center">
+            <button class="btn btn-primary" (click)="continuar()">Finalizar Compra</button>
+        </div>
+                <div class="col-6 text-center">
+            <button class="btn btn-primary" (click)="efetivar()">Continuar Comprando</button>
         </div>
 
     </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Categoria } from 'src/app/model/Categoria';
 import { Pedido } from 'src/app/model/Pedido';
+import { CarrinhoService } from 'src/app/servicos/carrinho.service';
 import { CategoriaService } from 'src/app/servicos/categoria.service';
 
 @Component({
@@ -14,10 +15,12 @@ export class NavbarComponent implements OnInit {
   public numItens: number = 0;
   public pedido!: Pedido;
 
-  constructor(private service:CategoriaService) { }
+  constructor(private service:CategoriaService, private carService: CarrinhoService) {
+    this.numItens = 0;
+   }
 
   ngOnInit(): void {
-
+    
     const carrinhoString = localStorage.getItem("LeetirCarrinho")
     this.pedido = carrinhoString ? JSON.parse(carrinhoString) : {};
     if (this.pedido && Array.isArray(this.pedido.itensPedido)) {
@@ -35,6 +38,9 @@ export class NavbarComponent implements OnInit {
       },
       error: (err) => {
         console.log("Erro ao listar as categorias: ", err);
+        this.carService.getNumberOfItems().subscribe(
+          (res) => { this.numItens = res }
+        );
       },
       complete: () => {
         console.log("Lista de categorias concluida!");

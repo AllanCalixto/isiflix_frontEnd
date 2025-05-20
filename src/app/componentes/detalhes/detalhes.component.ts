@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ItemPedido } from 'src/app/model/ItemPedido';
 import { Pedido } from 'src/app/model/Pedido';
 import { Produto } from 'src/app/model/Produto';
+import { CarrinhoService } from 'src/app/servicos/carrinho.service';
 import { ProdutoService } from 'src/app/servicos/produto.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class DetalhesComponent implements OnInit {
   public produtoDetalhe!: Produto;
   public quantidade: number = 1;
 
-  constructor(private route: ActivatedRoute, private service: ProdutoService, private nav: Router) { }
+  constructor(private route: ActivatedRoute, private service: ProdutoService, private nav: Router, private carService: CarrinhoService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(parameter => {
@@ -60,6 +61,7 @@ export class DetalhesComponent implements OnInit {
     pedido.valorTotal = pedido.valorTotal + item.precoTotal;
 
     localStorage.setItem("LeetirCarrinho", JSON.stringify(pedido));
+    this.carService.getNumberOfItems().next(pedido.itensPedido.length);
   }
 
 }
