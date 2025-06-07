@@ -14,6 +14,9 @@ import { DetalhesComponent } from './componentes/detalhes/detalhes.component';
 import { CarrinhoComponent } from './componentes/carrinho/carrinho.component';
 import { EfetivarpedidoComponent } from './componentes/efetivarpedido/efetivarpedido.component';
 import { ReciboComponent } from './componentes/recibo/recibo.component';
+import { BuscacategoriaComponent } from './componentes/buscacategoria/buscacategoria.component';
+import { BuscapalavrachaveComponent } from './componentes/buscapalavrachave/buscapalavrachave.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +28,9 @@ import { ReciboComponent } from './componentes/recibo/recibo.component';
     DetalhesComponent,
     CarrinhoComponent,
     EfetivarpedidoComponent,
-    ReciboComponent
+    ReciboComponent,
+    BuscacategoriaComponent,
+    BuscapalavrachaveComponent,
   ],
   imports: [
     BrowserModule,

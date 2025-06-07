@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Categoria } from 'src/app/model/Categoria';
 import { Pedido } from 'src/app/model/Pedido';
+import { BuscarprodutobykeyService } from 'src/app/servicos/buscarprodutobykey.service';
 import { CarrinhoService } from 'src/app/servicos/carrinho.service';
 import { CategoriaService } from 'src/app/servicos/categoria.service';
 
@@ -14,8 +16,12 @@ export class NavbarComponent implements OnInit {
   public lista: Categoria[] = [];
   public numItens: number = 0;
   public pedido!: Pedido;
+  public keyword!: string;
 
-  constructor(private service:CategoriaService, private carService: CarrinhoService) {
+  constructor(private service:CategoriaService,
+              private carService: CarrinhoService,
+              private route: Router,
+              private busca: BuscarprodutobykeyService) {
     this.numItens = 0;
    }
 
@@ -48,4 +54,11 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+  public buscar() {
+   // console.log(this.keyword);
+    if(this.keyword) {
+      this.busca.getKeyword().next(this.keyword);
+      this.route.navigate(['/busca']);
+    }
+  }
 }

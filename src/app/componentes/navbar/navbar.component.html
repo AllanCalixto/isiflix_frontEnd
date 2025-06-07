@@ -16,7 +16,7 @@
                 <!-- Não esquecer: as categorias aqui embaixo virão do banco de dados-->
                 <ul class="dropdown-menu">
                   <li *ngFor="let CAT of lista">
-                      <a class="dropdown-item" href="#">{{ CAT.nome }}</a>
+                      <a class="dropdown-item" [routerLink]="['/categoria/',CAT.id]">{{ CAT.nome }}</a>
                   </li>
                 </ul>
               </li>
@@ -25,10 +25,10 @@
                 </a>
               </li>
             </ul>
-            <form class="d-flex" role="search">
-              <input class="form-control me-2" type="search" placeholder="Procure seu produto" aria-label="Search">
-              <button class="btn"><i class="fas fa-search fa-2x"></i></button>
-            </form>
+            <div class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Procure seu produto" [(ngModel)]="keyword" aria-label="Search">
+              <button class="btn" (click)="buscar()"><i class="fas fa-search fa-2x"></i></button>
+            </div>
           </div>
         </div>
       </nav>

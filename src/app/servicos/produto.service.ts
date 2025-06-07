@@ -18,4 +18,12 @@ export class ProdutoService {
   public getProdutoPeloId(id: number): Observable<Produto> {
     return this.http.get<Produto>(`http://localhost:8080/produto/${id}`);
   }
+
+  public getProdutosPelaCategoria(idCateg: number) {
+    return this.http.get("http://localhost:8080/produto/categoria/"+idCateg);
+  }
+
+  public getProdutosPelaPalavraChave(keyword: string) {
+    return this.http.get("http://localhost:8080/produto/busca?key="+keyword);
+  }
 }
